@@ -17,12 +17,12 @@ class Player
   end
 
   def bank_player_win
-    @bank = @bank_win
+    @bank + @bank_win
   end
 
   def bank_pull
     @bank -= 10
-    @bank_win += 10
+    @bank_win += 20
   end
 
   def show_cards
