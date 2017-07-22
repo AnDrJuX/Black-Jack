@@ -130,8 +130,30 @@ class Main
     end
   end
 
+  def bet
+    @player.bank_pull
+    @dealer.bank_pull
+  end
 
+  def turn_player
+    @player.hold_cards << @deck.give_cards(2)
+  end
 
+  def turn_dealer
+    @dealer.hold_cards << @deck.give_cards(2)
+  end
+
+  def distribution_of_cards
+    @deck.create_deck
+  end
+
+  def screenplay
+    5.times do
+      sleep(0.2)
+      print " ♧  ♡  ♢  ♤ "
+    end
+    puts
+  end
 end
 
 start = Main.new
