@@ -41,6 +41,40 @@ class Main
     puts "Сейчас на Вашем счету #{player.bank_player} монет"
   end
 
+  def begin_play
+    puts"================== ♧  ♡  ♢  ♤ =================="
+    puts "Перемешиваем колоду и раздаем каждому по 2 карты: "
+    screenplay
+    distribution_of_cards
+    puts "У вас на руках: "
+    turn_player
+    @player.show_cards
+    puts "Итого очков: #{@player.amount_cards}"
+    bet
+    puts "Ставка в банк 10 монет. На вашем счету: #{@player.bank}"
+    turn_dealer
+    puts "У дилера на руках  ♧  ♡  ♢  ♤ "
+  end
+
+  private
+
+  def open_cards
+    puts "Вскрываем карты: "
+    puts "Карты игрока: #{@player.show_cards} | Очков: #{@player.amount_cards}"
+    puts "Карты дилера: #{@dealer.show_cards} | Очков: #{@dealer.amount_cards}"
+    if  21-@player.sum < 21-@dealer.sum && @player.sum <= 21
+      puts "Вы победили!!!"
+      puts "У вас в банке #{@player.bank_player_win}"
+    elsif
+    21-@player.sum == 21-@dealer.sum
+      puts "Ничья"
+    else
+      puts "Дилер выйграл"
+    end
+    play_again
+  end
+
+
 
 end
 
