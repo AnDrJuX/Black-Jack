@@ -74,6 +74,39 @@ class Main
     play_again
   end
 
+  def play_again
+    if (@player.bank != 0) && (@dealer.bank != 0)
+      puts "Сыграем еще? У вас на счету #{@player.bank}"
+      puts "Y/N"
+      key = gets.chomp.capitalize
+      if key == "Y"
+        @player.drop_cards
+        @dealer.drop_cards
+        puts "Начнем!"
+        begin_play
+      else
+        puts "Спасибо за игру! Увидимся еще!"
+        exit
+      end
+    elsif (@player.bank = 0) || (@dealer.bank == 0)
+      puts "Увы. Недостаточно денег в банке для игры"
+      puts "До свидания!"
+      exit
+    end
+  end
+
+  def dealer_choose
+    puts "Ход перешел к дилеру."
+    screenplay
+    if (@dealer.amount_cards <= 10)
+      @dealer.hold_cards << @deck.give_cards(1)
+      puts "Дилер взял одну карту. Ход перешел к Вам."
+    else
+      puts "Дилер не взял карту. Ход перешел к Вам."
+    end
+    cards_compare
+  end
+
 
 
 end
