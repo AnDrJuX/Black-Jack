@@ -12,6 +12,36 @@ class Main
     @deck = Deck.new
   end
 
+  def actions
+    puts "1. Пропустить ход"
+    puts "2. Добавить карту"
+    puts "3. Открыть карты"
+  end
+
+  def exec_actions(choice)
+    case choice
+      when 1
+        dealer_choose
+      when 2
+        player_choose
+      when 3
+        open_cards
+    end
+  end
+
+  def welcome
+    puts
+    puts "            ♧  ♡  ♢  ♤ Black Jack ♧  ♡  ♢  ♤"
+    puts
+    puts "Введите ваше имя: "
+    @name = gets.capitalize.chomp
+    @player = CardPlayer.new(@name)
+    @dealer = ComputerPlayer.new
+    puts "Добро пожаловать в игру Black Jack, #{@name}"
+    puts "Сейчас на Вашем счету #{player.bank_player} монет"
+  end
+
+
 end
 
 start = Main.new
