@@ -107,6 +107,29 @@ class Main
     cards_compare
   end
 
+  def player_choose
+    if (@player.hold_cards.size >= 2)
+      puts "У вас 3 карты, больше брать нельзя"
+    else
+      @player.hold_cards << @deck.give_cards(1)
+      @player.show_cards
+      @player.amount_cards
+      puts "Итого очков по итогу 3х карт: #{@player.sum}"
+      if @player.sum > 21
+        puts "У вас перебор"
+        open_cards
+      end
+    end
+    cards_compare
+  end
+
+  def cards_compare
+    if @player.hold_cards.size == 2 && @dealer.hold_cards.size == 2
+      puts "У каждого игрока по 3 карты. Вскрываем карты"
+      open_cards
+    end
+  end
+
 
 
 end
